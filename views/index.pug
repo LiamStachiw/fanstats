@@ -1,13 +1,81 @@
 extends layout
 
 block layout-content
-  div.View.WelcomeView
-    h1.Banner FanStats
-    div.Message
-      div.Title
-        h3 FanStats
-        h1 Get Fantasy Stats
-      span.Details Access the FanStats Team Portal
-    div.NavButtons
-      a(href="/user")
-          div.NavButton Get Your Stats!
+  .sb-nav-fixed
+  nav.sb-topnav.navbar.navbar-expand.navbar-dark.bg-dark
+    //- Navbar Brand
+    a.navbar-brand.ps-3(href='/') FanStats
+    //- Sidebar Toggle
+    button#sidebarToggle.btn.btn-link.btn-sm.order-1.order-lg-0.me-4.me-lg-0(href='#!')
+      i.fas.fa-bars
+    //- Navbar Search
+    form.d-none.d-md-inline-block.form-inline.ms-auto.me-0.me-md-3.my-2.my-md-0
+      .input-group
+        input.form-control(type='text' placeholder='Search for...' aria-label='Search for...' aria-describedby='btnNavbarSearch')
+        button#btnNavbarSearch.btn.btn-primary(type='button')
+          i.fas.fa-search
+    //- Navbar
+    ul.navbar-nav.ms-auto.ms-md-0.me-3.me-lg-4
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+          i.fas.fa-user.fa-fw
+        ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdown')
+          li
+            a.dropdown-item(href='#!') Settings
+          li
+            a.dropdown-item(href='#!') Activity Log
+          li
+            hr.dropdown-divider
+          li
+            a.dropdown-item(href='#!') Logout
+  #layoutSidenav
+    #layoutSidenav_nav
+      nav#sidenavAccordion.sb-sidenav.accordion.sb-sidenav-dark
+        .sb-sidenav-menu
+          .nav
+            .sb-sidenav-menu-heading Core
+            a.nav-link(href='/')
+              .sb-nav-link-icon
+                i.fas.fa-tachometer-alt
+              |                             Dashboard
+    #layoutSidenav_content
+      main
+        .container-fluid.px-4
+          h1.mt-4 Dashboard
+          ol.breadcrumb.mb-4
+            li.breadcrumb-item.active Dashboard
+          .card.mb-4
+            .card-header
+              i.fas.fa-table.me-1
+              |                             DataTable Example
+            .card-body
+              table#datatablesSimple
+                thead
+                  tr
+                    th Name
+                    th Position
+                    th Office
+                    th Age
+                    th Start date
+                    th Salary
+                tfoot
+                  tr
+                    th Name
+                    th Position
+                    th Office
+                    th Age
+                    th Start date
+                    th Salary
+      footer.py-4.bg-light.mt-auto
+        .container-fluid.px-4
+          .d-flex.align-items-center.justify-content-between.small
+            .text-muted Copyright &copy; FanStats 2021
+            div
+              a(href='#') Privacy Policy
+              |                             &middot;
+              a(href='#') Terms &amp; Conditions
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' crossorigin='anonymous')
+  script(src='js/scripts.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js' crossorigin='anonymous')
+  script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' crossorigin='anonymous')
+  script(src='js/datatables-simple-demo.js')

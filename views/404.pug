@@ -1,0 +1,26 @@
+extends layout
+
+block layout-content 
+    #layoutError
+        #layoutError_content
+            main
+            .container
+                .row.justify-content-center
+                    .col-lg-6
+                        .text-center.mt-4
+                            img.mb-4.img-error(src='img/404.svg')
+                            p.lead This requested URL was not found on this server.
+                            a(href='index.html')
+                                i.fas.fa-arrow-left.me-1
+                                | Return to Dashboard
+        #layoutError_footer
+            footer.py-4.bg-light.mt-auto
+                .container-fluid.px-4
+                    .d-flex.align-items-center.justify-content-between.small
+                        .text-muted Copyright &copy; Your Website 2021
+                        div
+                            a(href='#') Privacy Policy
+                            |                                 &middot;
+                            a(href='#') Terms &amp; Conditions
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js' crossorigin='anonymous')
+    script(src='js/scripts.js')

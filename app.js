@@ -15,7 +15,7 @@ const port = process.env.PORT || '3000';
 /**
  *  App Configuration
  */
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -33,7 +33,7 @@ app.get('/user', function(req, res) {
 
 // 404 Page
 app.use(function (req, res, next) {
-    res.status(404).send("Page not found");
+    res.render('404', { title: '404 - Page Not Found'});
 })
 
 /**
