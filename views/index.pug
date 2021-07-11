@@ -49,6 +49,8 @@ block layout-content
               i.fas.fa-table.me-1
               |                             DataTable Example
             .card-body
+              each val, key in json
+                p #{key} | #{val}
               table#datatablesSimple
                 thead
                   tr

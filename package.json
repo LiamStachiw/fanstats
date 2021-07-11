@@ -18,6 +18,7 @@
   "homepage": "https://github.com/LiamStachiw/fanstats#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "statsapi-nhl": "^1.0.3"
   }
 }
