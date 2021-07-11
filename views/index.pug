@@ -49,25 +49,33 @@ block layout-content
               i.fas.fa-table.me-1
               |                             DataTable Example
             .card-body
-              each val, key in json
-                p #{key} | #{val}
               table#datatablesSimple
                 thead
                   tr
                     th Name
-                    th Position
-                    th Office
-                    th Age
-                    th Start date
-                    th Salary
+                    th Goals
+                    th Assists
+                    th Points
+                    th Hits
+                    th PIMs
                 tfoot
                   tr
                     th Name
-                    th Position
-                    th Office
-                    th Age
-                    th Start date
-                    th Salary
+                    th Goals
+                    th Assists
+                    th Points
+                    th Hits
+                    th PIMs
+                tbody 
+                  each player in players
+                    if player.position !== 'G'
+                      tr
+                        td #{player.name}
+                        td #{player.goals}
+                        td #{player.assists}
+                        td #{player.points}
+                        td #{player.hits}
+                        td #{player.pim} 
       footer.py-4.bg-light.mt-auto
         .container-fluid.px-4
           .d-flex.align-items-center.justify-content-between.small

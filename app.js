@@ -26,43 +26,36 @@ app.set('view engine', 'pug');
 app.get('/', function(req, res) {
 
     var players = [];
+    var promises = [];
 
     nhlApi.Teams.getRosters("20202021").then(function(data) {
         data.forEach(team => {
             team.roster.forEach(player => {
                 var playerStats;
 
-                nhlApi.Players.getStats(player.person.id, {
+                promises.push(nhlApi.Players.getStats(player.person.id, {
                     "displayName": "yearByYear",
                     "gameType": null
                     }).then(function(stats) {
-                        try {
+                        if(typeof(stats[0].splits[0]) !== 'undefined'){
                             playerStats = stats[0].splits[0].stat;
                             playerStats.name = player.person.fullName;
                             playerStats.team = player.person.currentTeam.name;
-                        } catch (error) {
-                            console.log(`Caught by try/catch ${error}`);
-                        }                 
-                    });
-
-                players.push.playerStats;
+                            playerStats.position = player.person.primaryPosition.abbreviation;
+                            players.push(playerStats);
+                        }
+                    }).catch(err => console.log("Error:", err))
+                );    
             });
         });
 
-        console.log(players);
+        Promise.allSettled(promises).then(function() {
 
-        // nhlApi.Players.getStats(playerIDs[1], {
-        //     "displayName": "yearByYear",
-        //     "gameType": null
-        //     }).then(function(data){
-        //         console.log(data[0].splits[0].stat);
-        //     });
+            res.render('index', { title: 'Home', players: players});
 
-    });
+        });
 
-    var obj = { "first": "test", "second": "object"}
-
-    res.render('index', { title: 'Home', json: obj});
+    }).catch(err => console.log("Error:", err));
 })
 
 // 404 Page
